@@ -16,10 +16,6 @@ load_dotenv()
 
 logger = Logger(visible_level="info")
 
-session_name = (
-    input("Enter your session file name (default: my_session): ").strip()
-    or "my_session"
-)
 api_id, api_hash, phone, session_name = (
     os.getenv("API_ID"),
     os.getenv("API_HASH"),
