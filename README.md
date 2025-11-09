@@ -47,8 +47,10 @@ To use this project, you need to create a Telegram application and generate a `.
 
 1. Visit [my.telegram.org](https://my.telegram.org).
 2. Log in with your Telegram account.
-3. Navigate to “API development tools.”
+3. Navigate to “API development tools”.
 4. Create a new application to obtain your `api_id` and `api_hash`.
+5. Create your own `.env` file from the provided `.env.example` and set your API credentials and configuration in `.env`.
+6. Set your phone number (`PHONE`) and session name (`SESSION_NAME`) in `.env` as well.
 
 ### 2. Generate Your `.session` File
 
@@ -58,4 +60,4 @@ Run the provided script to generate your `.session` file:
 python -m tools.generate_session.py
 ```
 
-You will be prompted to enter your API ID, API Hash, and phone number. Then, enter the code sent to your Telegram app. After successful login, a `my_session.session` file will be created in your working directory.
+You will be prompted to enter your API ID, API Hash, and phone number. Then, enter the code sent to your Telegram app. After successful login, a `.session` file will be created in your working directory.
