@@ -18,6 +18,7 @@ This project uses the User Account (Client API) method with Telethon, which prov
 
 ## Set Up Python Virtual Environment
 
+
 It is recommended to use a Python virtual environment to manage dependencies for this project.
 
 1. Create a new virtual environment:
@@ -32,6 +33,10 @@ It is recommended to use a Python virtual environment to manage dependencies for
 	```bash
 	pip install --upgrade pip
 	```
+4. Install all necessary packages:
+	```bash
+	pip install -r requirements.txt
+	```
 
 
 ## Set Up Telegram App and Obtain `.session` File
@@ -45,26 +50,12 @@ To use this project, you need to create a Telegram application and generate a `.
 3. Navigate to “API development tools.”
 4. Create a new application to obtain your `api_id` and `api_hash`.
 
-### 2. Install Telethon
+### 2. Generate Your `.session` File
+
+Run the provided script to generate your `.session` file:
 
 ```bash
-pip install telethon
+python -m tools.generate_session.py
 ```
 
-### 3. Generate Your `.session` File
-
-Use the following Python script to log in and create your `.session` file:
-
-```python
-from telethon import TelegramClient
-
-api_id = 'YOUR_API_ID'
-api_hash = 'YOUR_API_HASH'
-phone = '+1234567890'  # Your phone number
-
-client = TelegramClient('my_session', api_id, api_hash)
-client.start(phone=phone)
-print('Session file created!')
-```
-
-You will be prompted to enter a code sent to your Telegram app. After successful login, a `my_session.session` file will be created in your working directory.
+You will be prompted to enter your API ID, API Hash, and phone number. Then, enter the code sent to your Telegram app. After successful login, a `my_session.session` file will be created in your working directory.
