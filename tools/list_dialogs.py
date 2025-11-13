@@ -5,7 +5,7 @@ Run this file from the terminal after generating your session file.
 
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
 from dotenv import load_dotenv
 from pymongo import MongoClient
@@ -58,7 +58,7 @@ def get_dialog_data(entity):
     )
     dialog_type = DialogType.get_type(entity)
     is_active = not getattr(entity, "left", False)
-    now = datetime.now(datetime.timezone.utc)
+    now = datetime.now(timezone.utc)
     return {
         "id": dialog_id,
         "name": name,
