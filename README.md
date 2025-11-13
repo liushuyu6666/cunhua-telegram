@@ -17,7 +17,7 @@ This project uses the User Account (Client API) method with Telethon, which prov
 
 ## Set Up MongoDB
 
-To set up MongoDB on Ubuntu, follow the [official MongoDB installation guide](https://www.mongodb.com/docs/manual/administration/install-community/?operating-system=linux&linux-distribution=ubuntu&linux-package=default&search-linux=with-search-linux).
+To set up MongoDB on Ubuntu, follow the [official MongoDB installation guide](https://www.mongodb.com/docs/manual/administration/install-community/?operating-system=linux&linux-distribution=ubuntu&linux-package=default&search-linux=with-search-linux) and [official MongoDB Compass installation guide](https://www.mongodb.com/docs/compass/install/?operating-system=linux&package-type=.deb)
 
 After installation, ensure MongoDB is running and accessible. Use `mongodb://localhost:27017` as your default connection string in the `.env` file.
 
