@@ -76,18 +76,24 @@ This tool lists all dialogs (private chats, groups, channels) your Telegram acco
 
 ### Usage
 
-1. **Configure MongoDB connection string in `.env`:**
+1. **Activate your Python virtual environment and install all packages:**
+	```bash
+	source .venv/bin/activate
+	pip install -r requirements.txt
+	```
+
+2. **Configure MongoDB connection string in `.env`:**
 	Add the following line to your `.env` file (use your own connection string if needed):
 	```
 	MONGO_URI=mongodb://localhost:27017
 	```
 
-2. **Run the tool:**
+3. **Run the tool:**
 	```bash
 	python -m tools.list_dialogs
 	```
 
-3. **Force update from Telegram (ignore cache):**
+4. **Force update from Telegram (ignore cache):**
 	```bash
 	python -m tools.list_dialogs --update
 	```
