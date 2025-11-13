@@ -101,13 +101,23 @@ This tool lists all dialogs (private chats, groups, channels) your Telegram acco
 If you do not use the `--update` flag, the tool will load dialogs from the MongoDB cache if available. If the cache is empty or you use `--update`, it will fetch dialogs from Telegram and update the cache.
 
 
-# Telethon Entities Overview
+# Telethon
 
 This section provides an overview of key entities in Telethon.
 
-## Dialog
+## Dialogs
 
-In Telethon, a **Dialog** represents a conversation or chat thread. It can be:
-	- A private chat with a user
-	- A group chat
-	- A channel
+In Telethon, a Dialog represents a conversation or chat thread. It can be:
+- **Private Chat**: One-to-one conversation with a single user.
+- **Chat**: Old-style “basic group” (up to 200 members) where all members can send messages.
+- **Channel with `entity.megagroup == True`**: A supergroup, i.e. a large group chat where all members can send messages.
+- **Channel with `entity.megagroup == False`**: A broadcast channel, where only admins/owners can post messages and other users are subscribers.
+
+My code in `tgtypes/dialog.py` classifies them slightly differently:
+
+| Telethon types        | My code classifies as | Reason                                                                                  |
+|-----------------------|-----------------------|-----------------------------------------------------------------------------------------|
+| Private Chat          | Private Chat          | One-to-one dialog with a single user.                                                  |
+| Chat                  | Group                 | Legacy/basic group where multiple members can talk; I don’t distinguish it further.    |
+| megagroup Channel     | Group                 | Supergroups behave like large group chats, so they are treated as groups in my logic.  |
+| non-megagroup Channel | Channel               | These are true broadcast channels, so they stay in their own “Channel” category.       |
