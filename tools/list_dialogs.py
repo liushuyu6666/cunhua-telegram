@@ -7,6 +7,7 @@ import os
 import sys
 from datetime import datetime, timezone
 
+import bson
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from telethon import TelegramClient
@@ -23,6 +24,8 @@ api_hash = os.getenv("API_HASH")
 phone = os.getenv("PHONE")
 session_name = os.getenv("SESSION_NAME")
 mongo_uri = os.getenv("MONGO_URI")
+mongo_db = os.getenv("MONGO_DB", "cunhua-telegram")
+dialogs_collection = os.getenv("DIALOGS_COLLECTION", "dialogs")
 
 if not all([api_id, api_hash, phone, session_name, mongo_uri]):
     logger.print(
@@ -35,17 +38,20 @@ if not all([api_id, api_hash, phone, session_name, mongo_uri]):
 
 def get_mongo_collection():
     mongo_client = MongoClient(mongo_uri)
-    db = mongo_client["cunhua-telegram"]
-    return db["dialogs"]
+    db = mongo_client[mongo_db]
+    return db[dialogs_collection]
 
 
 def fetch_cached_dialogs(collection):
-    return list(collection.find({}, {"_id": 0}))
+    return list(collection.find({}, projection={"_id": 0}))
 
 
 def cache_dialogs(collection, dialogs):
     collection.delete_many({})
     if dialogs:
+        for dialog in dialogs:
+            dialog.pop("_id", None)
+            dialog["id"] = bson.Int64(dialog["id"])
         collection.insert_many(dialogs)
 
 
