@@ -15,31 +15,11 @@ This project uses the User Account (Client API) method with Telethon, which prov
 
 # Setup
 
-## Set Up MongoDB (Ubuntu)
+## Set Up MongoDB
 
-To use MongoDB for caching dialog data, you need to install and start MongoDB on your Ubuntu system:
+To set up MongoDB on Ubuntu, follow the [official MongoDB installation guide](https://www.mongodb.com/docs/manual/administration/install-community/?operating-system=linux&linux-distribution=ubuntu&linux-package=default&search-linux=with-search-linux).
 
-1. **Install MongoDB:**
-	```bash
-	sudo apt update
-	sudo apt install -y mongodb
-	```
-
-2. **Start MongoDB service:**
-	```bash
-	sudo systemctl start mongodb
-	sudo systemctl enable mongodb
-	```
-
-3. **Verify MongoDB is running:**
-	```bash
-	sudo systemctl status mongodb
-	```
-
-4. **Default connection string:**
-	Use `mongodb://localhost:27017` as your `MONGO_URI` in your `.env` file.
-
-For advanced configuration or remote access, refer to the [official MongoDB documentation](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/).
+After installation, ensure MongoDB is running and accessible. Use `mongodb://localhost:27017` as your default connection string in the `.env` file.
 
 ## Set Up Python Virtual Environment
 
